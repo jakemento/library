@@ -18,22 +18,22 @@ public class BookTest {
     Book secondBook = new Book("Moby Dick");
     assertTrue(firstBook.equals(secondBook));
   }
-//
-//   @Test
-//   public void save_savesObjectIntoDatabase() {
-//     Student myStudent = new Student("Jimmy", "01.01.2016");
-//     myStudent.save();
-//     Student savedStudent = Student.all().get(0);
-//     assertTrue(savedStudent.equals(myStudent));
-//   }
-//
-//   @Test
-//   public void save_assignsIdToObject() {
-//     Student myStudent = new Student("Jimmy", "01.01.2016");
-//     myStudent.save();
-//     Student savedStudent = Student.all().get(0);
-//     assertEquals(myStudent.getId(), savedStudent.getId());
-//   }
+
+  @Test
+  public void save_savesObjectIntoDatabase() {
+    Book firstBook = new Book("Moby Dick");
+    firstBook.save();
+    Book savedBook = Book.all().get(0);
+    assertTrue(savedBook.equals(firstBook));
+  }
+
+  @Test
+  public void save_assignsIdToObject() {
+    Student myStudent = new Student("Jimmy", "01.01.2016");
+    myStudent.save();
+    Student savedStudent = Student.all().get(0);
+    assertEquals(myStudent.getId(), savedStudent.getId());
+  }
 //   @Test
 //   public void find_findsStudentInDatabase_true() {
 //     Student myStudent = new Student("Jimmy", "01.01.2016");

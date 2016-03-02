@@ -36,4 +36,14 @@ public class Book {
       return con.createQuery(sql).executeAndFetch(Book.class);
     }
   }
+
+  public void save() {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "INSERT INTO books(title) VALUES (:title)";
+      this.id = (int) con.createQuery(sql, true)
+        .addParameter("title", title)
+        .executeUpdate()
+        .getKey();
+    }
+  }
 }

@@ -70,17 +70,11 @@ public class CopyTest {
      assertEquals(savedPatrons.size(), 1);
    }
 
-
-//   @Test
-//   public void delete_deletesAllStudentsAndCourseAssoications() {
-//     Course myCourse = new Course("eco101");
-//     myCourse.save();
-//
-//     Student myStudent = new Student("Jimmy", "01.01.2016");
-//     myStudent.save();
-//
-//     myStudent.addCourse(myCourse);
-//     myStudent.delete();
-//     assertEquals(myCourse.getStudents().size(), 0);
-//   }
+  @Test
+  public void delete_deleteCopy() {
+    Copy testCopy = new Copy(1, "01/01/2016", "02/01/2016");
+    testCopy.save();
+    testCopy.delete();
+    assertEquals(0, Copy.all().size());
+  }
 }

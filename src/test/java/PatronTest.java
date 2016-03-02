@@ -69,44 +69,11 @@ public class PatronTest {
     assertEquals(savedPatrons.size(), 1);
  }
 
-
-//
-//   @Test
-//   public void addCourse_addsCourseToStudent() {
-//     Course myCourse = new Course("eco101");
-//     myCourse.save();
-//
-//     Student myStudent = new Student("Jimmy", "01.01.2016");
-//     myStudent.save();
-//
-//     myStudent.addCourse(myCourse);
-//     Course savedCourse = myStudent.getCourses().get(0);
-//     assertTrue(myCourse.equals(savedCourse));
-// }
-//
-//   @Test
-//   public void getCourses_returnsAllCourses_List() {
-//     Course myCourse = new Course("eco101");
-//     myCourse.save();
-//
-//     Student myStudent = new Student("Jimmy", "01.01.2016");
-//     myStudent.save();
-//
-//     myStudent.addCourse(myCourse);
-//     List savedCourses = myStudent.getCourses();
-//     assertEquals(savedCourses.size(), 1);
-//   }
-//
-//   @Test
-//   public void delete_deletesAllStudentsAndCourseAssoications() {
-//     Course myCourse = new Course("eco101");
-//     myCourse.save();
-//
-//     Student myStudent = new Student("Jimmy", "01.01.2016");
-//     myStudent.save();
-//
-//     myStudent.addCourse(myCourse);
-//     myStudent.delete();
-//     assertEquals(myCourse.getStudents().size(), 0);
-//   }
+  @Test
+  public void delete_deletePatron() {
+    Patron testPatron = new Patron("Jimmy");
+    testPatron.save();
+    testPatron.delete();
+    assertEquals(0, Patron.all().size());
+  }
 }

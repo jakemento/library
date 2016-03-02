@@ -85,4 +85,13 @@ public class Patron {
         .executeAndFetch(Copy.class);
     }
   }
+
+  public void delete() {
+    try(Connection con = DB.sql2o.open()) {
+      String deleteQuery = "DELETE FROM patrons WHERE id = :id;";
+      con.createQuery(deleteQuery)
+      .addParameter("id", id)
+      .executeUpdate();
+    }
+  }
 }

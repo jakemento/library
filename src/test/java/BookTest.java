@@ -67,17 +67,16 @@ public class BookTest {
     List savedAuthors = myBook.getAuthors();
     assertEquals(savedAuthors.size(), 1);
   }
-//
-//   @Test
-//   public void delete_deletesAllBooksAndAuthorAssoications() {
-//     Author myAuthor = new Author("eco101");
-//     myAuthor.save();
-//
-//     Book myBook = new Book("Jimmy", "01.01.2016");
-//     myBook.save();
-//
-//     myBook.addAuthor(myAuthor);
-//     myBook.delete();
-//     assertEquals(myAuthor.getBooks().size(), 0);
-//   }
+  @Test
+  public void delete_deletesAllAuthorsFromBook() {
+    Author myAuthor = new Author("C.S.", "Lewis");
+    myAuthor.save();
+
+    Book myBook = new Book("Chronicals of Narnia");
+    myBook.save();
+
+    myBook.addAuthor(myAuthor);
+    myBook.delete();
+    assertEquals(myAuthor.getBooks().size(), 0);
+  }
 }

@@ -75,4 +75,13 @@ public class Book {
       .executeAndFetch(Author.class);
     }
   }
+
+  public void delete() {
+    try(Connection con = DB.sql2o.open()) {
+      String deleteQuery = "DELETE FROM books WHERE id = :id;";
+      con.createQuery(deleteQuery)
+      .addParameter("id", id)
+      .executeUpdate();
+    }
+  }
 }

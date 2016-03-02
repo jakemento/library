@@ -83,8 +83,12 @@ public class Author {
     }
   }
 
-
-
-
-
+  public void delete() {
+    try(Connection con = DB.sql2o.open()) {
+      String deleteQuery = "DELETE FROM authors WHERE id = :id;";
+      con.createQuery(deleteQuery)
+      .addParameter("id", id)
+      .executeUpdate();
+    }
+  }
 }

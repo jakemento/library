@@ -92,4 +92,14 @@ public class Copy {
         .executeAndFetch(Patron.class);
     }
   }
+  public void delete() {
+    try(Connection con = DB.sql2o.open()) {
+      String deleteQuery = "DELETE FROM copies WHERE id = :id;";
+      con.createQuery(deleteQuery)
+      .addParameter("id", id)
+      .executeUpdate();
+    }
+  }
+
+
 }

@@ -42,45 +42,42 @@ public class AuthorTest {
     assertTrue(firstAuthor.equals(savedAuthor));
   }
 
-@Test
-public void addBook_addsBookToAuthor() {
-  Author myAuthor = new Author("C.S", "Lewis");
-  myAuthor.save();
+  @Test
+  public void addBook_addsBookToAuthor() {
+    Author myAuthor = new Author("C.S", "Lewis");
+    myAuthor.save();
 
-  Book myBook = new Book("Chronicals of Narnia");
-  myBook.save();
+    Book myBook = new Book("Chronicals of Narnia");
+    myBook.save();
 
-  myAuthor.addBook(myBook);
-  Book savedBook = myAuthor.getBooks().get(0);
-  assertTrue(myBook.equals(savedBook));
-}
+    myAuthor.addBook(myBook);
+    Book savedBook = myAuthor.getBooks().get(0);
+    assertTrue(myBook.equals(savedBook));
+  }
 
-@Test
-public void getBooks_returnsAllBooks_List() {
-  Author myAuthor = new Author("C.S", "Lewis");
-  myAuthor.save();
+  @Test
+  public void getBooks_returnsAllBooks_List() {
+    Author myAuthor = new Author("C.S", "Lewis");
+    myAuthor.save();
 
-  Book myBook = new Book("Chronicals of Narnia");
-  myBook.save();
+    Book myBook = new Book("Chronicals of Narnia");
+    myBook.save();
 
-  myAuthor.addBook(myBook);
-  List savedBooks = myAuthor.getBooks();
-  assertEquals(savedBooks.size(), 1);
-}
+    myAuthor.addBook(myBook);
+    List savedBooks = myAuthor.getBooks();
+    assertEquals(savedBooks.size(), 1);
+  }
 
+  @Test
+  public void delete_deletesAllBookFromAuthor() {
+    Author myAuthor = new Author("C.S.", "Lewis");
+    myAuthor.save();
 
+    Book myBook = new Book("Chronicals of Narnia");
+    myBook.save();
 
-//
-//   @Test
-//   public void delete_deletesAllStudentsAndCourseAssoications() {
-//     Course myCourse = new Course("eco101");
-//     myCourse.save();
-//
-//     Student myStudent = new Student("Jimmy", "01.01.2016");
-//     myStudent.save();
-//
-//     myStudent.addCourse(myCourse);
-//     myStudent.delete();
-//     assertEquals(myCourse.getStudents().size(), 0);
-//   }
+    myAuthor.addBook(myBook);
+    myAuthor.delete();
+    assertEquals(myAuthor.getBooks().size(), 0);
+  }
 }

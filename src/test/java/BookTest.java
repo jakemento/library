@@ -41,43 +41,43 @@ public class BookTest {
     Book savedBook = Book.find(firstBook.getId());
     assertTrue(firstBook.equals(savedBook));
   }
+
+  @Test
+  public void addAuthor_addsAuthorToBook() {
+    Author myAuthor = new Author("C.S", "Lewis");
+    myAuthor.save();
+
+    Book myBook = new Book("Chronicals of Narnia");
+    myBook.save();
+
+    myBook.addAuthor(myAuthor);
+    Author savedAuthor = myBook.getAuthors().get(0);
+    assertTrue(myAuthor.equals(savedAuthor));
+}
 //
 //   @Test
-//   public void addCourse_addsCourseToStudent() {
-//     Course myCourse = new Course("eco101");
-//     myCourse.save();
+//   public void getAuthors_returnsAllAuthors_List() {
+//     Author myAuthor = new Author("eco101");
+//     myAuthor.save();
 //
-//     Student myStudent = new Student("Jimmy", "01.01.2016");
-//     myStudent.save();
+//     Book myBook = new Book("Jimmy", "01.01.2016");
+//     myBook.save();
 //
-//     myStudent.addCourse(myCourse);
-//     Course savedCourse = myStudent.getCourses().get(0);
-//     assertTrue(myCourse.equals(savedCourse));
-// }
-//
-//   @Test
-//   public void getCourses_returnsAllCourses_List() {
-//     Course myCourse = new Course("eco101");
-//     myCourse.save();
-//
-//     Student myStudent = new Student("Jimmy", "01.01.2016");
-//     myStudent.save();
-//
-//     myStudent.addCourse(myCourse);
-//     List savedCourses = myStudent.getCourses();
-//     assertEquals(savedCourses.size(), 1);
+//     myBook.addAuthor(myAuthor);
+//     List savedAuthors = myBook.getAuthors();
+//     assertEquals(savedAuthors.size(), 1);
 //   }
 //
 //   @Test
-//   public void delete_deletesAllStudentsAndCourseAssoications() {
-//     Course myCourse = new Course("eco101");
-//     myCourse.save();
+//   public void delete_deletesAllBooksAndAuthorAssoications() {
+//     Author myAuthor = new Author("eco101");
+//     myAuthor.save();
 //
-//     Student myStudent = new Student("Jimmy", "01.01.2016");
-//     myStudent.save();
+//     Book myBook = new Book("Jimmy", "01.01.2016");
+//     myBook.save();
 //
-//     myStudent.addCourse(myCourse);
-//     myStudent.delete();
-//     assertEquals(myCourse.getStudents().size(), 0);
+//     myBook.addAuthor(myAuthor);
+//     myBook.delete();
+//     assertEquals(myAuthor.getBooks().size(), 0);
 //   }
 }

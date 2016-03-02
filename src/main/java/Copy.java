@@ -101,5 +101,16 @@ public class Copy {
     }
   }
 
-
+  public void update(String checkout_date, String due_date) {
+    this.checkout_date = checkout_date;
+    this.due_date = due_date;
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "UPDATE copies SET checkout_date = :checkout_date, due_date= :due_date WHERE id = :id";
+      con.createQuery(sql)
+        .addParameter("checkout_date", checkout_date)
+        .addParameter("due_date", due_date)
+        .addParameter("id", id)
+        .executeUpdate();
+    }
+  }
 }

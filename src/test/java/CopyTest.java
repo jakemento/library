@@ -77,4 +77,15 @@ public class CopyTest {
     testCopy.delete();
     assertEquals(0, Copy.all().size());
   }
+
+  @Test
+  public void update_updatesCopyCheckoutDate() {
+    Copy myCopy = new Copy(1, "01/01/2016", "02/01/2016");
+    myCopy.save();
+    myCopy.update("02/01/2016", "03/01/2016");
+    Copy savedCopy = Copy.find(myCopy.getId());
+    assertTrue(myCopy.equals(savedCopy));
+    assertEquals(myCopy.getCheckoutDate(), "02/01/2016");
+    assertEquals(myCopy.getDueDate(), "03/01/2016");
+  }
 }

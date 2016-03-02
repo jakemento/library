@@ -34,13 +34,13 @@ public class BookTest {
     Book savedBook = Book.all().get(0);
     assertEquals(firstBook.getId(), savedBook.getId());
   }
-//   @Test
-//   public void find_findsStudentInDatabase_true() {
-//     Student myStudent = new Student("Jimmy", "01.01.2016");
-//     myStudent.save();
-//     Student savedStudent = Student.find(myStudent.getId());
-//     assertTrue(myStudent.equals(savedStudent));
-//   }
+  @Test
+  public void find_findBookInDatabase_true() {
+    Book firstBook = new Book("Moby Dick");
+    firstBook.save();
+    Book savedBook = Book.find(firstBook.getId());
+    assertTrue(firstBook.equals(savedBook));
+  }
 //
 //   @Test
 //   public void addCourse_addsCourseToStudent() {

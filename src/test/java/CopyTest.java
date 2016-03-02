@@ -1,6 +1,7 @@
 import org.junit.*;
 import static org.junit.Assert.*;
 import java.util.List;
+import java.util.Arrays;
 
 public class CopyTest {
 
@@ -41,33 +42,35 @@ public class CopyTest {
     Copy savedCopy = Copy.find(firstCopy.getId());
     assertTrue(firstCopy.equals(savedCopy));
   }
-//
-//   @Test
-//   public void addCourse_addsCourseToStudent() {
-//     Course myCourse = new Course("eco101");
-//     myCourse.save();
-//
-//     Student myStudent = new Student("Jimmy", "01.01.2016");
-//     myStudent.save();
-//
-//     myStudent.addCourse(myCourse);
-//     Course savedCourse = myStudent.getCourses().get(0);
-//     assertTrue(myCourse.equals(savedCourse));
-// }
-//
-//   @Test
-//   public void getCourses_returnsAllCourses_List() {
-//     Course myCourse = new Course("eco101");
-//     myCourse.save();
-//
-//     Student myStudent = new Student("Jimmy", "01.01.2016");
-//     myStudent.save();
-//
-//     myStudent.addCourse(myCourse);
-//     List savedCourses = myStudent.getCourses();
-//     assertEquals(savedCourses.size(), 1);
-//   }
-//
+
+  @Test
+  public void addPatron_addsPatronToCopy() {
+    Copy myCopy = new Copy(1, "01/01/2016", "02/01/2016");
+    myCopy.save();
+
+    Patron myPatron = new Patron("Jimmy");
+    myPatron.save();
+
+    myCopy.addPatron(myPatron);
+    Patron savedPatron = myCopy.getPatrons().get(0);
+    assertTrue(myPatron.equals(savedPatron));
+  }
+
+
+    @Test
+   public void getPatrons_returnsAllPatrons_List() {
+     Copy myCopy = new Copy(1, "01/01/2016", "02/01/2016");
+     myCopy.save();
+
+     Patron myPatron = new Patron("Karin");
+     myPatron.save();
+
+     myCopy.addPatron(myPatron);
+     List savedPatrons = myCopy.getPatrons();
+     assertEquals(savedPatrons.size(), 1);
+   }
+
+
 //   @Test
 //   public void delete_deletesAllStudentsAndCourseAssoications() {
 //     Course myCourse = new Course("eco101");

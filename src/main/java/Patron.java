@@ -16,7 +16,7 @@ public class Patron {
       return name;
     }
 
-    public int getPatronId() {
+    public int getCopyId() {
       return copy_id;
     }
 
@@ -32,7 +32,7 @@ public class Patron {
     } else {
       Patron newPatron = (Patron) otherPatron;
       return this.getName().equals(newPatron.getName()) &&
-              this.getPatronId() == newPatron.getPatronId() &&
+              this.getCopyId() == newPatron.getCopyId() &&
               this.getId() == newPatron.getId();
 
     }

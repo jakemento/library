@@ -29,10 +29,10 @@ public class BookTest {
 
   @Test
   public void save_assignsIdToObject() {
-    Student myStudent = new Student("Jimmy", "01.01.2016");
-    myStudent.save();
-    Student savedStudent = Student.all().get(0);
-    assertEquals(myStudent.getId(), savedStudent.getId());
+    Book firstBook = new Book("Moby Dick");
+    firstBook.save();
+    Book savedBook = Book.all().get(0);
+    assertEquals(firstBook.getId(), savedBook.getId());
   }
 //   @Test
 //   public void find_findsStudentInDatabase_true() {

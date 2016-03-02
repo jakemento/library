@@ -65,4 +65,24 @@ public class Patron {
       return patron;
     }
   }
+
+  public void addCopy(Copy copy) {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "INSERT INTO copies_patrons (copy_id, patron_id) VALUES (:copy_id, :patron_id)";
+      con.createQuery(sql)
+      .addParameter("patron_id",this.getId())
+      .addParameter("copy_id", copy.getId())
+      .executeUpdate();
+    }
+  }
+
+
+  public List<Copy> getCopies() {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "SELECT copies.* FROM patrons JOIN copies_patrons ON (patrons.id = copies_patrons.patron_id) JOIN copies ON (copies_patrons.copy_id = copies.id) WHERE patrons.id = :patron_id;";
+        return con.createQuery(sql)
+        .addParameter("patron_id", this.getId())
+        .executeAndFetch(Copy.class);
+    }
+  }
 }

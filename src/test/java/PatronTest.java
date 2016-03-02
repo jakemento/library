@@ -41,6 +41,35 @@ public class PatronTest {
     Patron savedPatron = Patron.find(firstPatron.getId());
     assertTrue(firstPatron.equals(savedPatron));
   }
+
+  @Test
+  public void addCopy_addsCopyToPatron() {
+    Patron myPatron = new Patron("Jimmy");
+    myPatron.save();
+
+    Copy myCopy = new Copy(1, "01/01/2016", "02/01/2016");
+    myCopy.save();
+
+    myPatron.addCopy(myCopy);
+    Copy savedCopy = myPatron.getCopies().get(0);
+    assertTrue(myCopy.equals(savedCopy));
+  }
+
+
+  @Test
+  public void getCopies_returnsAllCopies_List() {
+    Copy myCopy = new Copy(1, "01/01/2016", "02/01/2016");
+    myCopy.save();
+
+    Patron myPatron = new Patron("Karin");
+    myPatron.save();
+
+    myCopy.addPatron(myPatron);
+    List savedPatrons = myCopy.getPatrons();
+    assertEquals(savedPatrons.size(), 1);
+ }
+
+
 //
 //   @Test
 //   public void addCourse_addsCourseToStudent() {

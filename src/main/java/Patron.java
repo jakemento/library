@@ -5,7 +5,6 @@ import java.util.ArrayList;
 public class Patron {
   private int id;
   private String name;
-  private int copy_id;
 
 
   public int getId() {
@@ -14,10 +13,6 @@ public class Patron {
 
     public String getName() {
       return name;
-    }
-
-    public int getCopyId() {
-      return copy_id;
     }
 
 
@@ -32,7 +27,6 @@ public class Patron {
     } else {
       Patron newPatron = (Patron) otherPatron;
       return this.getName().equals(newPatron.getName()) &&
-              this.getCopyId() == newPatron.getCopyId() &&
               this.getId() == newPatron.getId();
 
     }
@@ -47,10 +41,9 @@ public class Patron {
 
   public void save() {
     try(Connection con = DB.sql2o.open()) {
-      String sql = "INSERT INTO patrons(name, copy_id) VALUES (:name, :copy_id)";
+      String sql = "INSERT INTO patrons(name) VALUES (:name)";
       this.id = (int) con.createQuery(sql, true)
         .addParameter("name", name)
-        .addParameter("copy_id", copy_id)
         .executeUpdate()
         .getKey();
     }
@@ -105,5 +98,4 @@ public class Patron {
         .executeUpdate();
     }
   }
-
 }

@@ -7,6 +7,7 @@ public class Copy {
   private int book_id;
   private String checkout_date;
   private String due_date;
+  private int patron_id;
 
   public int getId() {
       return id;
@@ -22,6 +23,10 @@ public class Copy {
 
     public String getDueDate() {
       return due_date;
+    }
+
+    public int getPatronId() {
+      return patron_id;
     }
 
     public Copy(int book_id, String checkout_date, String due_date) {
@@ -53,11 +58,12 @@ public class Copy {
 
   public void save() {
     try(Connection con = DB.sql2o.open()) {
-      String sql = "INSERT INTO copies(book_id, checkout_date, due_date) VALUES (:book_id, :checkout_date, :due_date)";
+      String sql = "INSERT INTO copies(book_id, checkout_date, due_date, patron_id) VALUES (:book_id, :checkout_date, :due_date, :patron_id)";
       this.id = (int) con.createQuery(sql, true)
         .addParameter("book_id", book_id)
         .addParameter("checkout_date", checkout_date)
         .addParameter("due_date", due_date)
+        .addParameter("patron_id", patron_id)
         .executeUpdate()
         .getKey();
     }
@@ -101,15 +107,17 @@ public class Copy {
     }
   }
 
-  public void update(String checkout_date, String due_date) {
+  public void update(String checkout_date, String due_date, int patron_id) {
     this.checkout_date = checkout_date;
     this.due_date = due_date;
+    this.patron_id = patron_id;
     try(Connection con = DB.sql2o.open()) {
-      String sql = "UPDATE copies SET checkout_date = :checkout_date, due_date= :due_date WHERE id = :id";
+      String sql = "UPDATE copies SET checkout_date = :checkout_date, due_date= :due_date, patron_id = :patron_id WHERE id = :id";
       con.createQuery(sql)
         .addParameter("checkout_date", checkout_date)
         .addParameter("due_date", due_date)
         .addParameter("id", id)
+        .addParameter("patron_id", patron_id)
         .executeUpdate();
     }
   }

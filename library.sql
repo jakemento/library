@@ -138,7 +138,8 @@ CREATE TABLE copies (
     id integer NOT NULL,
     book_id integer,
     checkout_date character varying,
-    due_date character varying
+    due_date character varying,
+    patron_id integer
 );
 
 
@@ -205,8 +206,7 @@ ALTER SEQUENCE copies_patrons_id_seq OWNED BY copies_patrons.id;
 
 CREATE TABLE patrons (
     id integer NOT NULL,
-    name character varying,
-    copy_id integer
+    name character varying
 );
 
 
@@ -324,7 +324,7 @@ SELECT pg_catalog.setval('books_id_seq', 1, false);
 -- Data for Name: copies; Type: TABLE DATA; Schema: public; Owner: Guest
 --
 
-COPY copies (id, book_id, checkout_date, due_date) FROM stdin;
+COPY copies (id, book_id, checkout_date, due_date, patron_id) FROM stdin;
 \.
 
 
@@ -354,7 +354,7 @@ SELECT pg_catalog.setval('copies_patrons_id_seq', 1, false);
 -- Data for Name: patrons; Type: TABLE DATA; Schema: public; Owner: Guest
 --
 
-COPY patrons (id, name, copy_id) FROM stdin;
+COPY patrons (id, name) FROM stdin;
 \.
 
 

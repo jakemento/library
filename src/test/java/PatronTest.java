@@ -67,7 +67,7 @@ public class PatronTest {
     myCopy.addPatron(myPatron);
     List savedPatrons = myCopy.getPatrons();
     assertEquals(savedPatrons.size(), 1);
- }
+  }
 
   @Test
   public void delete_deletePatron() {
@@ -75,5 +75,15 @@ public class PatronTest {
     testPatron.save();
     testPatron.delete();
     assertEquals(0, Patron.all().size());
+  }
+
+  @Test
+  public void update_updatesPatronName() {
+    Patron myPatron = new Patron("Karin");
+    myPatron.save();
+    myPatron.update("Carin");
+    Patron savedPatron = Patron.find(myPatron.getId());
+    assertTrue(myPatron.equals(savedPatron));
+    assertEquals(myPatron.getName(), "Carin");
   }
 }

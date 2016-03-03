@@ -41,20 +41,17 @@ public class AppTest extends FluentTest {
     assertThat(pageSource()).contains("Narnia");
   }
 
+
   @Test
-  public void AuthorisAddedToBook() {
-    goTo("http://localhost:4567/");
-    click("a", withText("Add or View Library"));
-    fill("#title").with("Green Eggs and Ham");
-    submit(".btn");
-    click("a", withText("Green Eggs and Ham"));
-    click("a", withText("Add Author"));
-    fill("#firstName", withText("dr."));
-    fill("#lastName", withText("suess"));
-    submit(".btn");
-    click("a", withText("Green Eggs and Ham"));
+  public void addAuthorToBook() {
+    Book newBook = new Book("Green Eggs and Ham");
+    newBook.save();
+    Author newAuthor = new Author("Dr.", "Seuss");
+    newAuthor.save();
+    String bookPath = String.format("http://localhost:4567/books/%d", newBook.getId());
+    goTo(bookPath);
+    assertThat(pageSource()).contains("Green Eggs and Ham");
     assertThat(pageSource()).contains("Dr.");
-    assertThat(pageSource()).contains("Suess");
   }
 
   @Test

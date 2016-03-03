@@ -3,21 +3,24 @@
 #if($book.getAuthors())
 <h3>Author(s):</h3>
 <ul>
-    #foreach($author in $book.getAuthors())
-      <li>$author.getfirstName() $author.getLastName()</li>
+    #foreach($author in $authors)
+      <li>$author.getFirstName() $author.getLastName()</li>
     #end
   </ul>
 #end
 
-<h4>Add a student to this course:</h4>
+<h4>Add an author to $book.getTitle()</h4>
 
 <form action='/add_authors' method='post'>
     <input id="book_id" name="book_id" type="hidden" value="$book.getId()">
-    <label for="book_id">Select a student</label>
-    <select id='book_id' name='book_id' type='text'>
+    <label for="author_id">Select an author:</label>
+    <select id='author_id' name='author_id' type='text'>
       #foreach($author in $authors)
-        <option value="$author.getLastName()"> $author.getLastName() </option>
+        <option value="$author.getFirstName() $author.getLastName()"> $author.getFirstName() $author.getLastName() </option>
       #end
     </select>
-    <button type='submit'>Add author</button>
+    <button class=".btn btn-success" type='submit'>Add author</button>
 </form>
+
+<li><a href="/authors/$author.getId()">$author.getFirstName()
+$author.getLastName()</a></li>

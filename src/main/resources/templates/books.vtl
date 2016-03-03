@@ -16,5 +16,7 @@
 </form>
 
 #foreach ($book in $books)
-  <li><a href="/books/$book.getId()">$book.getTitle()</a></li>
+    <li> <a href="/books/$book.getId()">$book.getTitle()</a> </li>
+
 #end
+  </ul>

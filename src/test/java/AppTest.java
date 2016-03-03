@@ -42,6 +42,22 @@ public class AppTest extends FluentTest {
   }
 
   @Test
+  public void AuthorisAddedToBook() {
+    goTo("http://localhost:4567/");
+    click("a", withText("Add or View Library"));
+    fill("#title").with("Green Eggs and Ham");
+    submit(".btn");
+    click("a", withText("Green Eggs and Ham"));
+    click("a", withText("Add Author"));
+    fill("#firstName", withText("dr."));
+    fill("#lastName", withText("suess"));
+    submit(".btn");
+    click("a", withText("Green Eggs and Ham"));
+    assertThat(pageSource()).contains("Dr.");
+    assertThat(pageSource()).contains("Suess");
+  }
+
+  @Test
   public void AuthorIsCreatedTest() {
     goTo("http://localhost:4567/");
     click("a", withText("Add or View Authors"));
@@ -60,6 +76,7 @@ public class AppTest extends FluentTest {
     submit(".btn");
     assertThat(pageSource()).contains("Jim");
   }
+
 
   //
   // @Test

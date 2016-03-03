@@ -3,8 +3,8 @@
 #if($book.getAuthors())
 <h3>Author(s):</h3>
 <ul>
-    #foreach($author in $authors)
-      <li>$author.getFirstName() $author.getLastName()</li>
+    #foreach($author in $book.getAuthors())
+      <li><a href="/authors/$author.getId()">$author.getFirstName()</a></li>
     #end
   </ul>
 #end
@@ -16,11 +16,8 @@
     <label for="author_id">Select an author:</label>
     <select id='author_id' name='author_id' type='text'>
       #foreach($author in $authors)
-        <option value="$author.getFirstName() $author.getLastName()"> $author.getFirstName() $author.getLastName() </option>
+        <option value="$author.getId()"> $author.getFirstName() $author.getLastName() </option>
       #end
     </select>
     <button class=".btn btn-success" type='submit'>Add author</button>
 </form>
-
-<li><a href="/authors/$author.getId()">$author.getFirstName()
-$author.getLastName()</a></li>

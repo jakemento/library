@@ -50,16 +50,16 @@ public class App {
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
-    // get("/authors/:id", (request, response) -> {
-    //   HashMap<String, Object> model = new HashMap<String, Object>();
-    //   int id = Integer.parseInt(request.params("id"));
-    //   Author author = Author.find(id);
-    //   model.put("author", author);
-    //   model.put("book", author.getBooks());
-    //   model.put("books", Book.all());
-    //   model.put("template", "templates/author.vtl");
-    //   return new ModelAndView(model, layout);
-    // }, new VelocityTemplateEngine());
+    get("/authors/:id", (request, response) -> {
+      HashMap<String, Object> model = new HashMap<String, Object>();
+      int id = Integer.parseInt(request.params("id"));
+      Author author = Author.find(id);
+      model.put("author", author);
+      model.put("book", author.getBooks());
+      model.put("books", Book.all());
+      model.put("template", "templates/author.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
 
     post("/books", (request, response) -> {
       String title = request.queryParams("title");
@@ -95,17 +95,18 @@ public class App {
       int bookId = Integer.parseInt(request.queryParams("book_id"));
       Book book = Book.find(bookId);
       Author author = Author.find(authorId);
-      book.addAuthor(author);
+      author.addBook(book);
       response.redirect("/authors/" + authorId);
       return null;
     });
 
+
     post("/add_authors", (request, response) -> {
-      int authorId = Integer.parseInt(request.queryParams("author_id"));
       int bookId = Integer.parseInt(request.queryParams("book_id"));
+      int authorId = Integer.parseInt(request.queryParams("author_id"));
       Book book = Book.find(bookId);
       Author author = Author.find(authorId);
-      author.addBook(book);
+      book.addAuthor(author);
       response.redirect("/books/" + bookId);
       return null;
     });

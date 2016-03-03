@@ -1,0 +1,20 @@
+<h1>Library Catalog</h1>
+
+<p>Add a new book to the library:</p>
+
+<form action="/patrons" method="post">
+  <label for="patronName">Patron Name</label>
+  <input id="patronName" name="patronName" type="text">
+
+
+  <!-- #foreach($author in $authors)
+    <option value="$author.getFirstName()
+    $author.getLastName()">$author.getFirstName() $author.getLastName()</option>
+  #end -->
+
+  <button type="submit" class= ".btn btn-success">Add Patron</button>
+</form>
+
+#foreach ($patron in $patrons)
+  <li><a href="/patrons/$patron.getId()">$patron.getName()</a></li>
+#end

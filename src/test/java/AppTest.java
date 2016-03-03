@@ -26,22 +26,41 @@ public class AppTest extends FluentTest {
   @Rule
   public DatabaseRule database = new DatabaseRule();
 
-  //Integration testing
-  // @Test
-  // public void rootTest() {
-  //   goTo("http://localhost:4567/");
-  //   assertThat(pageSource()).contains("Welcome to the Enrollment Center");
-  // }
-  //
-  // @Test
-  //   public void courseIsCreatedTest() {
-  //     goTo("http://localhost:4567/");
-  //     Course myCourse = new Course("eco101");
-  //     myCourse.save();
-  //
-  //     goTo("http://localhost:4567/courses");
-  //     assertThat(pageSource()).contains("eco101");
-  // }
+  @Test
+  public void rootTest() {
+    goTo("http://localhost:4567/");
+    assertThat(pageSource()).contains("HOMEPAGE");
+  }
+
+  @Test
+  public void bookIsCreatedTest() {
+    goTo("http://localhost:4567/");
+    click("a", withText("Add or View Library"));
+    fill("#title").with("Narnia");
+    submit(".btn");
+    assertThat(pageSource()).contains("Narnia");
+  }
+
+  @Test
+  public void AuthorIsCreatedTest() {
+    goTo("http://localhost:4567/");
+    click("a", withText("Add or View Authors"));
+    fill("#firstName").with("C.S");
+    fill("#lastName").with("Lewis");
+    submit(".btn");
+    assertThat(pageSource()).contains("C.S");
+    assertThat(pageSource()).contains("Lewis");
+  }
+
+  @Test
+  public void PatronIsCreatedTest() {
+    goTo("http://localhost:4567/");
+    click("a", withText("Add or View a Patron"));
+    fill("#patronName").with("Jim");
+    submit(".btn");
+    assertThat(pageSource()).contains("Jim");
+  }
+
   //
   // @Test
   // public void courseIsDisplayedTest() {

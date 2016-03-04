@@ -110,5 +110,23 @@ public class App {
       response.redirect("/books/" + bookId);
       return null;
     });
+
+
+    post("/books/:id/delete", (request, response) -> {
+      int id = Integer.parseInt(request.params("id"));
+      Book book = Book.find(id);
+      book.delete();
+      response.redirect("/books");
+      return null;
+    });
+
+
+    post("/authors/:id/delete", (request, response) -> {
+      int id = Integer.parseInt(request.params("id"));
+      Author author = Author.find(id);
+      author.delete();
+      response.redirect("/authors");
+      return null;
+    });
   }
 }

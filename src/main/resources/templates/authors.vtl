@@ -19,4 +19,7 @@
 #foreach ($author in $authors)
   <li><a href="/authors/$author.getId()">$author.getFirstName()
   $author.getLastName()</a></li>
+  <form action ='/authors/$author.getId()/delete' method ='post'>
+    <button type = 'submit'> Delete author </button>
+  </form>
 #end

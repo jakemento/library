@@ -85,11 +85,10 @@ public class Book {
     }
   }
 
-  public void deleteAllBooks() {
+  public static void deleteAllBooks() {
     try(Connection con = DB.sql2o.open()) {
-      String deleteQuery = "DELETE * FROM books;";
+      String deleteQuery = "DELETE FROM books;";
       con.createQuery(deleteQuery)
-      .addParameter("id", id)
       .executeUpdate();
     }
   }

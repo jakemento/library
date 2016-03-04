@@ -128,5 +128,18 @@ public class App {
       response.redirect("/authors");
       return null;
     });
+
+    post("/books/delete", (request, response) -> {
+      Book.deleteAllBooks();
+      response.redirect("/books");
+      return null;
+    });
+
+
+    post("/authors/delete", (request, response) -> {
+      Author.deleteAllAuthors();
+      response.redirect("/authors");
+      return null;
+    });
   }
 }

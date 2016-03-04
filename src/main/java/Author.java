@@ -92,11 +92,10 @@ public class Author {
     }
   }
 
-  public void deleteAllAuthors() {
+  public static void deleteAllAuthors() {
     try(Connection con = DB.sql2o.open()) {
-      String deleteQuery = "DELETE * FROM authors;";
+      String deleteQuery = "DELETE FROM authors;";
       con.createQuery(deleteQuery)
-      .addParameter("id", id)
       .executeUpdate();
     }
   }
